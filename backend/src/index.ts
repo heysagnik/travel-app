@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
 import { connectDB } from "./db";
+import { router as authRouter } from "./routes/auth";
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ app.use(cookieParser());
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World");
 });
+
+app.use("/api/auth", authRouter);
 
 connectDB();
 app.listen(PORT, () => {
