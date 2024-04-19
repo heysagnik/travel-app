@@ -27,7 +27,7 @@ const userModel = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // all false and default values are added to make the fields optional
+  // all false and default values are added to make the fields optional (below)
   isAdmin: {
     type: Boolean,
     required: false,
@@ -37,23 +37,23 @@ const userModel = new mongoose.Schema({
     type: String,
     required: false,
     default: "inactive",
-    enum: ["active", "inactive", "pending"],
+    enum: ["active", "inactive", "pending"], // in a trip, not in a trip, pending approval for a trip
   },
   notifications: {
     type: Array,
     required: false,
-    default: [],
+    default: [], // should contain usernames and ids of users who have requested to join a trip
   },
   posts: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "Post",
     required: false,
-    default: [],
+    default: [], // should contain ids of posts created by the user
   },
-  // POSTS
-  // PREVIOUS TRIPS
 });
 
 const User = mongoose.model("User", userModel);
 
 export default User;
+
+// here posts mean the trips created by the user

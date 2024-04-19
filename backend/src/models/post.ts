@@ -32,15 +32,14 @@ const postModel = new mongoose.Schema({
   interestedUsers: {
     type: Array,
     required: false,
-    default: [],
+    default: [], // should contain usernames and ids of users who are interested in the post
   },
   comments: {
+    // wont implement this feature as of now
     type: Array,
     required: false,
     default: [],
   },
-  // AUTHOR
-  // COMMENTS
 });
 
 const Post = mongoose.model("Post", postModel);
