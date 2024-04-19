@@ -40,7 +40,8 @@ const userModel = new mongoose.Schema({
     enum: ["active", "inactive", "pending"], // in a trip, not in a trip, pending approval for a trip
   },
   notifications: {
-    type: Array,
+    type: [mongoose.Schema.Types.ObjectId], //---testing something--- might change to an array
+    ref: "User",
     required: false,
     default: [], // should contain usernames and ids of users who have requested to join a trip
   },

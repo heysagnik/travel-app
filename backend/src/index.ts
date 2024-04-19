@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 
 import { connectDB } from "./db";
 import { router as authRouter } from "./routes/auth";
+import { router as postRouter } from "./routes/post";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/posts", postRouter);
 
 connectDB();
 app.listen(PORT, () => {
