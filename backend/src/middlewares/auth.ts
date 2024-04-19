@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { Secret } from "jsonwebtoken";
 
-const validateUser = async (
+export const validateUser = async (
   req: Request,
   res: Response,
   next: NextFunction
