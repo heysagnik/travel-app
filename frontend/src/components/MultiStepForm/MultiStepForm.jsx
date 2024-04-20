@@ -26,8 +26,6 @@ const renderStep = (step) => {
       return <Timing />;
     case 2:
       return <Review />;
-    case 3:
-      return <ThankYou />;
     default:
       return null;
   }
