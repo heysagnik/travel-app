@@ -30,15 +30,27 @@ const postModel = new mongoose.Schema(
       required: true,
     },
     interestedUsers: {
-      type: Array,
-      required: false,
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "User",
+      required: true,
       default: [], // should contain usernames and ids of users who are interested in the post
+    },
+    limit: {
+      // if limit is set, only that many users can be interested in the post
+      type: Number,
+      required: false,
     },
     comments: {
       // wont implement this feature as of now
       type: Array,
       required: false,
       default: [],
+    },
+    status: {
+      type: String,
+      required: true,
+      default: "active",
+      enum: ["active", "inactive"], // active means post is visible to all, inactive means post is not visible to all
     },
   },
   { timestamps: true }

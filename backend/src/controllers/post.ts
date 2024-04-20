@@ -1,13 +1,10 @@
 import { Request, Response } from "express";
-import dotenv from "dotenv";
 
 import Post from "../models/post";
 
-dotenv.config();
-
 export const getPosts = async (req: Request, res: Response) => {
   try {
-    const posts = await Post.find()
+    const posts = await Post.find({ status: "active" })
       .populate("author", "username status")
       .sort({ createdAt: -1 })
       .limit(30)
