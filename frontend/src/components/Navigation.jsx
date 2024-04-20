@@ -51,15 +51,26 @@ const Navigation = () => {
               <span className="hidden lg:block">Profile</span>
             </NavLink>
           </li>
+          <div className="hidden lg:block">
           <button
-            className="flex flex-row space-x-3 py-1 lg:py-2 px-3 lg:px-6 rounded gap-3"
+            className="flex flex-row space-x-3 py-1 lg:py-2 px-3 lg:px-6 rounded gap-3 "
             onClick={() => document.getElementById("my_modal_3").showModal()}
           >
             <Plus />
             Journey
           </button>
+          </div>
+          
         </ul>
       </nav>
+      <div className="fixed bottom-14 right-8 lg:hidden md:hidden z-20">
+        <button
+          className="bg-black text-white p-2 rounded-full"
+          onClick={() => document.getElementById("my_modal_3").showModal()}
+        >
+          <Plus />
+        </button>
+    </div>
     </div>
   );
 };
