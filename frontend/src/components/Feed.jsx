@@ -1,38 +1,36 @@
 import React from 'react';
+import { Heart as HeartIcon, ChatBubbleEmpty as ChatIcon, UserBadgeCheck as UserIcon } from 'iconoir-react';
 
-const Feed = ({ isAuthenticated }) => {
-  const tweets = [
-    // replace this with actual tweets from your API
-    { id: 1, content: 'Tweet 1' },
-    { id: 2, content: 'Tweet 2' },
-    { id: 3, content: 'Tweet 3' },
-  ];
+import RightBar from './RightBar';
 
+
+
+const Feed = ({ tweets, isAuthenticated }) => {
   return (
-    <div className="flex flex-col lg:flex-row">
-      <div className="lg:flex-4">
+    <div className="lg:flex ">
+      <div className="lg:w-[640px] w-full h-full pb-20  pt-14">
         {tweets.map(tweet => (
-          <div key={tweet.id} className="m-3 p-3 bg-white shadow rounded-lg">
-            <p className="text-gray-700">{tweet.content}</p>
-          </div>
+          <article key={tweet.id} className="bg-white px-4 mob:px-6 py-4 border-b border-grey hover:bg-gray-gray0 cursor-pointer">
+            <div className="flex items-center space-x-4">
+              <img src={tweet.userPhoto} alt="User" className="w-10 h-10 rounded-full"/>
+              <span className="font-bold">{tweet.userName}</span>
+            </div>
+            <p className="mt-2 text-gray-700">{tweet.content}</p>
+            <div className="mt-2 flex space-x-4">
+              <button className="text-gray-500 hover:text-blue-500">
+                <HeartIcon className="h-5 w-5"/>
+              </button>
+              <button className="text-gray-500 hover:text-blue-500">
+                <ChatIcon className="h-5 w-5"/>
+              </button>
+              <button className="text-gray-500 hover:text-blue-500">
+                <UserIcon className="h-5 w-5"/>
+              </button>
+            </div>
+          </article>
         ))}
-        {!isAuthenticated ? (
-          <div className="m-3 p-3 bg-white shadow rounded-lg">
-            <p>You need to login to see more tweets.</p>
-            <a href="/login" className="text-blue-500 hover:underline">Login</a>
-          </div>
-        ) : null}
       </div>
-      <div className="lg:flex-1 lg:ml-6 mt-6 lg:mt-0">
-        <div className="m-3 p-3 bg-white shadow rounded-lg">
-          <h2 className="text-lg font-bold mb-2">Who to follow</h2>
-          <ul className="space-y-2">
-            <li className="border-b pb-2">Person 1</li>
-            <li className="border-b pb-2">Person 2</li>
-            <li>Person 3</li>
-          </ul>
-        </div>
-      </div>
+      <RightBar/>
     </div>
   );
 };

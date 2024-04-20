@@ -19,13 +19,35 @@ const Redirect = ({ to }) => {
 };
 
 
+const tweets = [
+  {
+    id: 1,
+    userName: "John Doe",
+    userPhoto: "https://randomuser.me/api/portraits/women/65.jpg",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec nunc at lacus tincidunt vehicula."
+  },  
+  {
+    id: 2,
+    userName: "Jane Doe",
+    userPhoto: "https://randomuser.me/api/portraits/women/65.jpg",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec nunc at lacus tincidunt vehicula."
+   },
+  {
+    id: 3,
+    userName: "John Doe",
+    userPhoto: "https://randomuser.me/api/portraits/women/65.jpg",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec nunc at lacus tincidunt vehicula."
+  },
+];
+
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     children: [
       { path: "/", element: <Redirect to="/discover" /> },
-      { path: "/discover", element: <Feed /> },
+      { path: "/discover", element: <Feed isAuthenticated={'true'} tweets={tweets}/> },
       { path: "/message", element: <Message /> },
       { path: "/profile", element: <Profile /> },
       { path: "/login", element: <Login /> },

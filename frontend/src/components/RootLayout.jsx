@@ -1,14 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Navigation from "./Navigation";
-import Feed from "./Feed";
+import RightBar from "./RightBar";
 
 const RootLayout = () => {
   return (
-    <div className="flex lg:flex-row lg:justify-center lg:items-center">
+    <div className="lg:w-[1200px] w-full min-h-screen mx-auto lg:flex">
       <Navigation />
-  
       <Outlet />
+      
     </div>
   );
 };
