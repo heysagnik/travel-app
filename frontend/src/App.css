@@ -6,6 +6,9 @@
   margin-bottom: 1.6em;
 }
 label,
+.ant-picker {
+  z-index: 1051; /* Adjust this value as needed */
+}
 input {
   display: block;
   width: 100%;

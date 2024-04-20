@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { Steps } from "antd";
 import { Provider } from "./MultiStepFormContext";
-import Details from "./Details";
-import Address from "./Address";
+import Destination from "./Destination";
+import Timing from "./Timing";
 import Review from "./Review";
 
 const { Step } = Steps;
 
 const detailsInitialState = {
-  name: "",
-  age: "",
-  profession: "",
+  destination: "",
 };
 
-const addressInitialState = {
+const TimingInitialState = {
   address1: "",
   address2: "",
   city: "",
@@ -22,9 +20,9 @@ const addressInitialState = {
 const renderStep = (step) => {
   switch (step) {
     case 0:
-      return <Details />;
+      return <Destination />;
     case 1:
-      return <Address />;
+      return <Timing />;
     case 2:
       return <Review />;
     default:
@@ -34,25 +32,25 @@ const renderStep = (step) => {
 
 const MultiStepForm = () => {
   const [details, setDetails] = useState(detailsInitialState);
-  const [address, setAddress] = useState(addressInitialState);
+  const [timing, setTiming] = useState(TimingInitialState);
   const [currentStep, setCurrentStep] = useState(0);
 
   const next = () => {
     if (currentStep === 2) {
       setCurrentStep(0);
       setDetails(detailsInitialState);
-      setAddress(addressInitialState);
+      setTiming(TimingInitialState);
       return;
     }
     setCurrentStep(currentStep + 1);
   };
   const prev = () => setCurrentStep(currentStep - 1);
   return (
-    <Provider value={{ details, setDetails, next, prev, address, setAddress }}>
+    <Provider value={{ details, setDetails, next, prev, timing, setTiming }}>
       <Steps current={currentStep}>
-        <Step title={"Fill in your details"} />
-        <Step title={"Address details"} />
-        <Step title={"Review and Save"} />
+        <Step title={"Destination"} />
+        <Step title={"Timing"} />
+        <Step title={"Review and Post"} />
       </Steps>
       <main>{renderStep(currentStep)}</main>
     </Provider>

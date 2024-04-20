@@ -3,7 +3,7 @@ import MultiStepForm from "./MultiStepForm/MultiStepForm";
 export default function Modal() {
   return (
     <>
-      <dialog id="my_modal_3" className="modal rounded-3xl p-10 select-none">
+      <dialog id="my_modal_3" className="modal rounded-3xl p-10 select-none z-[1050]">
         <div className="modal-box min-w-3xl max-w-5xl">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}

@@ -8,7 +8,6 @@ import {
 } from "iconoir-react";
 import { useLocation } from "react-router-dom";
 
-
 const Navigation = () => {
   const location = useLocation();
 
