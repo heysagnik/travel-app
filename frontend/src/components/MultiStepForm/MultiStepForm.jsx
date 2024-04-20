@@ -4,6 +4,7 @@ import { Provider } from "./MultiStepFormContext";
 import Destination from "./Destination";
 import Timing from "./Timing";
 import Review from "./Review";
+import ThankYou from "./ThankYou";
 
 const { Step } = Steps;
 
@@ -25,6 +26,8 @@ const renderStep = (step) => {
       return <Timing />;
     case 2:
       return <Review />;
+    case 3:
+      return <ThankYou />;
     default:
       return null;
   }
@@ -42,6 +45,7 @@ const MultiStepForm = () => {
       setTiming(TimingInitialState);
       return;
     }
+
     setCurrentStep(currentStep + 1);
   };
   const prev = () => setCurrentStep(currentStep - 1);
