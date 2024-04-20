@@ -4,7 +4,6 @@ import { Provider } from "./MultiStepFormContext";
 import Destination from "./Destination";
 import Timing from "./Timing";
 import Review from "./Review";
-import ThankYou from "./ThankYou";
 
 const { Step } = Steps;
 

@@ -1,9 +1,9 @@
 // Destination.jsx
 import { useContext } from "react";
+import MultiStepFormContext from "./MultiStepFormContext";
 import { Formik } from "formik";
 import { Button } from "antd";
 import { Input } from "formik-antd";
-import MultiStepFormContext from "./MultiStepFormContext";
 
 const Destination = () => {
   const { details, setDetails, next } = useContext(MultiStepFormContext);

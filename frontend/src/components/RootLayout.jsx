@@ -1,7 +1,5 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import Navigation from "./Navigation";
-import RightBar from "./RightBar";
 import Modal from "./Modal";
 
 const RootLayout = () => {
