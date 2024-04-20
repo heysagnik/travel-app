@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PublicRoute = ({ children }) => {
   const isAuthenticated = false; // get this value from your auth state
@@ -7,7 +7,7 @@ const PublicRoute = ({ children }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/discover');
+      navigate("/discover");
     }
   }, [isAuthenticated, navigate]);
 
