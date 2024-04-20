@@ -30,7 +30,7 @@ const Feed = ({ tweets, isAuthenticated }) => {
           </article>
         ))}
       </div>
-      <RightBar/>
+      <RightBar />
     </div>
   );
 };
