@@ -42,6 +42,7 @@ const MultiStepForm = () => {
       setTiming(TimingInitialState);
       return;
     }
+
     setCurrentStep(currentStep + 1);
   };
   const prev = () => setCurrentStep(currentStep - 1);
