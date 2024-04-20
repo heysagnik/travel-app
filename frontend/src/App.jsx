@@ -8,6 +8,7 @@ import Message from "./components/Message";
 import Profile from "./components/Profile";
 
 
+
 const Redirect = ({ to }) => {
   const navigate = useNavigate();
 
@@ -50,10 +51,18 @@ const router = createBrowserRouter([
       { path: "/discover", element: <Feed isAuthenticated={'true'} tweets={tweets}/> },
       { path: "/message", element: <Message /> },
       { path: "/profile", element: <Profile /> },
-      { path: "/login", element: <Login /> },
-      { path: "/signup", element: <Signup /> },
+      // { path: "/login", element: <Login /> },
+      // { path: "/signup", element: <Signup /> },
     ],
   },
+  {
+    path: "/login",
+    element: <Login/>,
+  },
+  {
+    path: "/signup",
+    element: <Signup/>,
+  }
 ]);
 
 
