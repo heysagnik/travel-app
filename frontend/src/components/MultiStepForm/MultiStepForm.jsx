@@ -36,6 +36,7 @@ const renderStep = (step) => {
 const MultiStepForm = () => {
   const [details, setDetails] = useState(detailsInitialState);
   const [timing, setTiming] = useState(TimingInitialState);
+  const [members, setMembers] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
 
   const next = () => {
@@ -50,7 +51,7 @@ const MultiStepForm = () => {
   };
   const prev = () => setCurrentStep(currentStep - 1);
   return (
-    <Provider value={{ details, setDetails, next, prev, timing, setTiming, }}>
+    <Provider value={{ details, setDetails, next, prev, timing, setTiming,members, setMembers }}>
       <Steps current={currentStep} >
         <Step title={"Destination"} />
         <Step title={"Timing"} />
