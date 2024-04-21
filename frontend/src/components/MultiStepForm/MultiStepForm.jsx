@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Steps } from "antd";
+import { Steps, ConfigProvider } from "antd";
 import { Provider } from "./MultiStepFormContext";
 import Destination from "./Destination";
 import Timing from "./Timing";
@@ -40,10 +40,11 @@ const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const next = () => {
-    if (currentStep === 2) {
+    if (currentStep === 3) {
       setCurrentStep(0);
       setDetails(detailsInitialState);
       setTiming(TimingInitialState);
+      setMembers("");
       return;
     }
 
@@ -51,15 +52,45 @@ const MultiStepForm = () => {
   };
   const prev = () => setCurrentStep(currentStep - 1);
   return (
-    <Provider value={{ details, setDetails, next, prev, timing, setTiming,members, setMembers }}>
-      <Steps current={currentStep} >
-        <Step title={"Destination"} />
-        <Step title={"Timing"} />
-        <Step title={"Members"} />
-        <Step title={"Review and Post"} />
-        
-      </Steps>
-      <main>{renderStep(currentStep)}</main>
+    <Provider
+      value={{
+        details,
+        setDetails,
+        next,
+        prev,
+        timing,
+        setTiming,
+        members,
+        setMembers,
+      }}
+    >
+      <ConfigProvider
+        theme={{
+          components: {
+            Button: {
+              colorPrimary: "#fe5401",
+              algorithm: true, // Enable algorithm
+            },
+            Input: {
+              colorPrimary: "#fe5401",
+              algorithm: true, // Enable algorithm
+            },
+            Steps: {
+              colorPrimary: "#fe5401",
+              algorithm: true, // Enable algorithm
+            },
+          },
+        }}
+      >
+        <Steps current={currentStep}>
+          <Step title={"Destination"} />
+          <Step title={"Timing"} />
+          <Step title={"Members"} />
+          <Step title={"Review and Post"} />
+        </Steps>
+
+        <main>{renderStep(currentStep)}</main>
+      </ConfigProvider>
     </Provider>
   );
 };
