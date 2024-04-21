@@ -3,7 +3,7 @@ import React from "react";
 const FinalScrn = () => {
   return (
     <div>
-      {/* {alert("Contact details sent to the registered mobile number.")} */}
+      {alert("Contact details sent to the registered mobile number.")}
       <h1 className="text-3xl text-center">A trip to Goa with Anita</h1>
       <br></br>
       <p className="text-2xl text-center">
