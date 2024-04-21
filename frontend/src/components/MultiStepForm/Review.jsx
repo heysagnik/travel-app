@@ -33,7 +33,7 @@ const Review = () => {
         </div>
         <div>
           <div className="text-xl">Members:</div>
-          <div className="text-2xl">{members}</div>
+          <div className="text-2xl">{members.members}</div>
         </div>
         <div className={"flex justify-between items-center mt-4 "}>
           <Button

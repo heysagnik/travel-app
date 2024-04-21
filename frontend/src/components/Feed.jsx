@@ -1,4 +1,5 @@
-import { useContext, useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Heart as HeartIcon,
@@ -35,7 +36,7 @@ const Feed = ({ tweets }) => {
         {tweets.map((tweet) => (
           <article
             onClick={() => {
-              navigate("/finalscrn");
+              document.getElementById("details_sent_modal").showModal();
             }}
             key={tweet.id}
             className="bg-white px-4 mob:px-6 py-4 border-b border-grey hover:bg-gray-gray0 cursor-pointer"
