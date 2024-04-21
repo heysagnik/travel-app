@@ -27,11 +27,9 @@ const NewUsersCard = () => {
   const getUsers = async () => {
     const res = await axios.get("http://localhost:3000/api/users");
     setUsers(res.data);
-    console.log(res);
   };
 
   useEffect(() => {
-    console.log("NewUsersCard mounted");
     getUsers();
   }, []);
 
@@ -49,7 +47,7 @@ const NewUsersCard = () => {
         <UserCard userName={"@heysagnik"} />
         <UserCard userName={"@heysagnik"} /> */}
         {users.map((user) => (
-          <UserCard userName={user.username} name={user.name} key={user.id} />
+          <UserCard userName={user.username} name={user.name} key={user._id} />
         ))}
       </div>
     </div>
