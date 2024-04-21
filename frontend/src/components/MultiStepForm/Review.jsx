@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import MultiStepFormContext from "./MultiStepFormContext";
 import { Checkmark } from "react-checkmark";
 const Review = () => {
-  const { details, timing, next, prev } = useContext(MultiStepFormContext);
+  const { details, timing,members, next, prev } = useContext(MultiStepFormContext);
   const [visible, setVisible] = useState(false);
   const onClick = () => {
     next();
@@ -23,14 +23,19 @@ const Review = () => {
               From: {timing.fromDate} To: {timing.toDate}
             </div>
           </Col>
+          <Col span={24}>
+            {/* <h1>Members: {members}</h1> */}
+          </Col>
         </Row>
         <div
-          className={"form__item button__items d-flex justify-content-between"}
-        >
-          <Button type={"default"} onClick={prev}>
+            className={
+              "flex justify-between items-center mt-4 "
+            }
+          >
+          <Button type={"default"} onClick={prev} className="absolute bottom-6 left-4 ">
             Back
           </Button>
-          <Button type={"primary"} onClick={() => setVisible(true)}>
+          <Button type={"primary"} onClick={() => setVisible(true)} className="absolute bottom-6 left-4">
             Confirm
           </Button>
         </div>

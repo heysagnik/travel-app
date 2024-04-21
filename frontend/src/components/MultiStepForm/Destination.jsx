@@ -3,6 +3,7 @@ import MultiStepFormContext from "./MultiStepFormContext";
 import { Formik } from "formik";
 import { Button } from "antd";
 import { Input } from "formik-antd";
+import { MapPin } from "iconoir-react";
 
 const Destination = () => {
   const { details, setDetails, next } = useContext(MultiStepFormContext);
@@ -24,13 +25,13 @@ const Destination = () => {
           <div className={"max-w-xs mx-auto mt-40 mb-40"}>
             <div className={`mb-4 space-y-6 ${errors.destination && "border-red-500"}`}>
                   <label className="font-semibold text-xl mb-4">What's your Destination? *</label>
-                 <Input name="destination" className="border border-gray-300 rounded-md p-2" />
+                 <Input name="destination" className="border border-gray-300 rounded-md p-2" prefix={<MapPin/>}/>
                  <p className="text-red-500">{errors.destination}</p>
             </div>
             <div
               className={"absolute bottom-6 right-6"}
             >
-              <Button type={"primary"} onClick={handleSubmit}>
+              <Button type={"primary"} onClick={handleSubmit} className="bg-[#FE5401]">
                 Next
               </Button>
             </div>

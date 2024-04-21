@@ -11,7 +11,7 @@ import RootLayout from "./components/RootLayout";
 import Message from "./components/Message";
 import Profile from "./components/Profile";
 import axios from "axios";
-import { Provider } from "./LoginContext";
+
 import { RecoilRoot, useRecoilState } from "recoil";
 import { authState } from "./recoil/authState";
 import FinalScrn from "./pages/FinalScrn";

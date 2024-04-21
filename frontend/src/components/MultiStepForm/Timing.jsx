@@ -50,13 +50,13 @@ const Timing = () => {
           </div>
           <div
             className={
-              "form__item button__items d-flex justify-content-between"
+              "flex justify-between items-center mt-4 "
             }
           >
-            <Button type={"default"} onClick={prev}>
+            <Button type={"default"} onClick={prev} className="absolute bottom-6 left-4">
               Back
             </Button>
-            <Button type={"primary"} onClick={handleSubmit}>
+            <Button type={"primary"} onClick={handleSubmit} className="absolute bottom-6 right-4 bg-[#FE5401] ">
               Next
             </Button>
           </div>

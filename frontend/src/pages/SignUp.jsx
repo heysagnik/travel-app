@@ -3,7 +3,7 @@ import axios from "axios";
 import LoginHero from "../components/ui/LoginHero";
 import { useState, useEffect } from "react";
 import { authState } from "../recoil/authState";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
@@ -14,9 +14,9 @@ const SignUp = () => {
   const [contact, setContact] = useState("");
   const [address, setAddress] = useState("");
   const [username, setUsername] = useState("");
-  const [isLoggedInState, setIsLoggedInState] = useRecoilState(authState);
+  const setAuth = useSetRecoilState(authState);
   const navigate = useNavigate();
-
+  
   const handleLogin = async () => {
     try {
       const response = await axios.post(
@@ -34,10 +34,8 @@ const SignUp = () => {
           withCredentials: true,
         }
       );
-      setIsLoggedInState({
-        username: response.data.data.username,
-        email: response.data.data.email,
-      });
+      localStorage.setItem('user', JSON.stringify(response.data.data));
+      setAuth(response.data.data);
       console.log("register successful:", response.data);
 
       navigate("/");
