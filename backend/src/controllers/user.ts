@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import User from "../models/user";
 import Post from "../models/post";
 
+import { sendSMS } from "../utils/twilio";
+
 export const getProfile = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
@@ -47,7 +49,7 @@ export const interestedInAPost = async (req: Request, res: Response) => {
     const userId = req.body.user.id;
     const post = await Post.findById(id)
       .populate("author", "id")
-      .populate("interestedUsers", "id")
+      .populate("interestedUsers", "id contact")
       .exec();
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
@@ -68,6 +70,18 @@ export const interestedInAPost = async (req: Request, res: Response) => {
       post.status = "inactive";
     }
     await post.save();
+
+    for (const user of post.interestedUsers) {
+      // send notification to all interested users
+      // @ts-ignore
+      if (user.contact) {
+        sendSMS(
+          // @ts-ignore
+          user.contact,
+          `Someone is interested in your post: ${post.title}`
+        );
+      }
+    }
 
     // send notification to the author of the post
 
