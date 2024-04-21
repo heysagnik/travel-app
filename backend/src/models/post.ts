@@ -16,7 +16,7 @@ const postModel = new mongoose.Schema(
     },
     category: {
       type: String,
-      required: true,
+      required: false,
       enum: ["beach", "mountain", "city", "countryside", "other"],
       default: "other",
     },
