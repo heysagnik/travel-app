@@ -4,15 +4,15 @@ import { useState, useEffect } from "react";
 import LoginHero from "../components/ui/LoginHero";
 import { useNavigate } from "react-router-dom";
 
-import { useRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { authState } from "../recoil/authState";
 
 const Login = () => {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-  const [isLoggedInState, setIsLoggedInState] = useRecoilState(authState);
+  const setAuth = useSetRecoilState(authState);
+  const auth = useRecoilValue(authState);
 
   const handleLogin = async () => {
     try {
@@ -30,12 +30,10 @@ const Login = () => {
       console.log("Login successful:", response.data);
 
       if (response.status === 200) {
-        setIsLoggedInState({
-          username: response.data.data.username,
-          email: response.data.data.email,
-        });
-        console.log(isLoggedInState);
-
+        localStorage.setItem('user', JSON.stringify(response.data.data));
+        setAuth(response.data.data);
+        console.log(auth);
+        console.log("Login successful:", response.data);
         navigate("/");
       }
     } catch (error) {

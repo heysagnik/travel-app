@@ -6,7 +6,7 @@ import {
   UserBadgeCheck as UserIcon,
 } from "iconoir-react";
 
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { authState } from "../recoil/authState";
 
 import RightBar from "./RightBar";
@@ -15,17 +15,16 @@ import RightBar from "./RightBar";
 const Feed = ({ tweets }) => {
   const navigate = useNavigate();
 
-  const [isLoggedInState, setIsLoggedInState] = useRecoilState(authState);
+  const auth = useRecoilValue(authState);
 
   useEffect(() => {
-    console.log(isLoggedInState);
     console.log("here");
-    if (isLoggedInState.username) {
-      console.log(isLoggedInState);
+    if (auth.username) {
+      console.log(auth);
       console.log("Feed mounted");
     } else {
-      console.log("meh");
-      console.log(isLoggedInState);
+      console.log("nahh failed");
+      console.log(auth);
       navigate("/login");
     }
   }, []);

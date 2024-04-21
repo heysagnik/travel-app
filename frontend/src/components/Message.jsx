@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginContext from "../LoginContext";
+import { useRecoilValue } from "recoil";
+import { authState } from "../recoil/authState";
+
 function Message() {
   const navigate = useNavigate();
-  const { isAuthenticated } = useContext(LoginContext);
-  if (!isAuthenticated) {
+  const auth = useRecoilValue(authState);
+  if (auth === null || auth === undefined) {
     navigate("/login");
   }
   return (

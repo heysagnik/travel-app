@@ -4,6 +4,7 @@ import { Provider } from "./MultiStepFormContext";
 import Destination from "./Destination";
 import Timing from "./Timing";
 import Review from "./Review";
+import NumberOfMembers from "./NumberOf";
 
 const { Step } = Steps;
 
@@ -24,6 +25,8 @@ const renderStep = (step) => {
     case 1:
       return <Timing />;
     case 2:
+      return <NumberOfMembers />;
+    case 3:
       return <Review />;
     default:
       return null;
@@ -47,11 +50,13 @@ const MultiStepForm = () => {
   };
   const prev = () => setCurrentStep(currentStep - 1);
   return (
-    <Provider value={{ details, setDetails, next, prev, timing, setTiming }}>
-      <Steps current={currentStep}>
+    <Provider value={{ details, setDetails, next, prev, timing, setTiming, }}>
+      <Steps current={currentStep} >
         <Step title={"Destination"} />
         <Step title={"Timing"} />
+        <Step title={"Members"} />
         <Step title={"Review and Post"} />
+        
       </Steps>
       <main>{renderStep(currentStep)}</main>
     </Provider>
