@@ -10,7 +10,7 @@ export const router = express.Router();
 
 router.get("/", getUsers);
 
-router.post("/interested/:id", interestedInAPost);
+router.post("/interested/:tweetId", interestedInAPost);
 
 router.post("/close/:id", closePost);
 

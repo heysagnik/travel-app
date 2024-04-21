@@ -45,7 +45,7 @@ export const closePost = async (req: Request, res: Response) => {
 
 export const interestedInAPost = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id;
+    const id = req.params.tweetId;
     const userId = req.body.user.id;
     const intUser = await User.findById(userId);
     const post = await Post.findById(id)
