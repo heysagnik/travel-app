@@ -8,12 +8,18 @@ import {
 } from "iconoir-react";
 import { useLocation } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+
 const Navigation = () => {
   const location = useLocation();
 
   const getNavLinkClass = (path) => {
     return location.pathname === path ? "font-bold" : "";
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col">
@@ -56,7 +62,9 @@ const Navigation = () => {
             <div className="hidden lg:block">
               <button
                 className="flex flex-row space-x-3 py-1 lg:py-2 px-3 lg:px-6 rounded-full gap-3 bg-black text-white"
-                onClick={() => document.getElementById("my_modal_3").showModal()}
+                onClick={() =>
+                  document.getElementById("my_modal_3").showModal()
+                }
               >
                 <Plus />
                 Journey
@@ -64,18 +72,29 @@ const Navigation = () => {
             </div>
           </li>
           <li>
-          <div className="hidden lg:block">
-          <button
-            className="flex flex-row space-x-3 py-1 lg:py-2 px-3 lg:px-6 rounded-full gap-3 bg-black text-white"
-            onClick={{}}
-          >
-            <LogOut/>
-            <span>Logout</span>
-          </button>
-          </div>
+            <div className="hidden lg:block">
+              <button
+                className="flex flex-row space-x-3 py-1 lg:py-2 px-3 lg:px-6 rounded-full gap-3 bg-black text-white"
+                onClick={async (e) => {
+                  e.preventDefault();
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("user");
+                  const res = await axios.post(
+                    "http://localhost:3000/api/auth/logout",
+                    {},
+                    { withCredentials: true }
+                  );
+                  console.log(res);
+                  navigate("/login");
+                }}
+              >
+                <LogOut />
+                <span>Logout</span>
+              </button>
+            </div>
           </li>
         </ul>
-        
+
         <div className="fixed bottom-14 right-8 lg:hidden  z-20">
           <button
             className="bg-black text-white p-2 rounded-full"
