@@ -14,6 +14,7 @@ import axios from "axios";
 import { Provider } from "./LoginContext";
 import { RecoilRoot, useRecoilState } from "recoil";
 import { authState } from "./recoil/authState";
+import FinalScrn from "./pages/FinalScrn";
 
 // eslint-disable-next-line react/prop-types
 const Redirect = ({ to }) => {
@@ -62,6 +63,7 @@ const router = createBrowserRouter([
       },
       { path: "/message", element: <Message /> },
       { path: "/profile", element: <Profile /> },
+      { path: "/finalscrn", element: <FinalScrn /> },
       // { path: "/login", element: <Login /> },
       // { path: "/signup", element: <Signup /> },
     ],

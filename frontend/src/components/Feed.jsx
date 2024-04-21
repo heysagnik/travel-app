@@ -35,6 +35,9 @@ const Feed = ({ tweets }) => {
       <div className="lg:w-[640px] w-full h-full pb-20  pt-14">
         {tweets.map((tweet) => (
           <article
+            onClick={() => {
+              navigate("/finalscrn");
+            }}
             key={tweet.id}
             className="bg-white px-4 mob:px-6 py-4 border-b border-grey hover:bg-gray-gray0 cursor-pointer"
           >

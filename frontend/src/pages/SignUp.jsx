@@ -2,6 +2,9 @@ import React from "react";
 import axios from "axios";
 import LoginHero from "../components/ui/LoginHero";
 import { useState, useEffect } from "react";
+import { authState } from "../recoil/authState";
+import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   // name, username, email, password, contact, address;
@@ -11,6 +14,8 @@ const SignUp = () => {
   const [contact, setContact] = useState("");
   const [address, setAddress] = useState("");
   const [username, setUsername] = useState("");
+  const [isLoggedInState, setIsLoggedInState] = useRecoilState(authState);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -24,11 +29,18 @@ const SignUp = () => {
           address,
           username,
         },
+        {},
         {
           withCredentials: true,
         }
       );
+      setIsLoggedInState({
+        username: response.data.data.username,
+        email: response.data.data.email,
+      });
       console.log("register successful:", response.data);
+
+      navigate("/");
     } catch (error) {
       console.error("register failed:", error);
     }
