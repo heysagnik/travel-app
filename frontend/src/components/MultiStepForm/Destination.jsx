@@ -1,4 +1,3 @@
-// Destination.jsx
 import { useContext } from "react";
 import MultiStepFormContext from "./MultiStepFormContext";
 import { Formik } from "formik";
@@ -16,22 +15,20 @@ const Destination = () => {
       }}
       validate={(values) => {
         const errors = {};
-        if (!values.destination) errors.destination = "Destination is required";
+        if (!values.destination) errors.destination = "You are travelling without a destination? Really?";
         return errors;
       }}
     >
       {({ handleSubmit, errors }) => {
         return (
-          <div className={"details__wrapper"}>
-            <div
-              className={`form__item ${errors.destination && "input__error"}`}
-            >
-              <label>Destination *</label>
-              <Input name={"destination"} />
-              <p className={"error__feedback"}>{errors.destination}</p>
+          <div className={"max-w-xs mx-auto mt-40 mb-40"}>
+            <div className={`mb-4 space-y-6 ${errors.destination && "border-red-500"}`}>
+                  <label className="font-semibold text-xl mb-4">What's your Destination? *</label>
+                 <Input name="destination" className="border border-gray-300 rounded-md p-2" />
+                 <p className="text-red-500">{errors.destination}</p>
             </div>
             <div
-              className={"form__item button__items d-flex justify-content-end"}
+              className={"absolute bottom-6 right-6"}
             >
               <Button type={"primary"} onClick={handleSubmit}>
                 Next

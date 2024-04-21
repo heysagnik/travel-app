@@ -48,7 +48,7 @@ const MultiStepForm = () => {
   const prev = () => setCurrentStep(currentStep - 1);
   return (
     <Provider value={{ details, setDetails, next, prev, timing, setTiming }}>
-      <Steps current={currentStep}>
+      <Steps current={currentStep} className="color-[#FE5401]">
         <Step title={"Destination"} />
         <Step title={"Timing"} />
         <Step title={"Review and Post"} />
