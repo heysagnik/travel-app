@@ -2,17 +2,21 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import LoginHero from "../components/ui/LoginHero";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginContext from "../LoginContext";
+
+import { useRecoilState } from "recoil";
+import { authState } from "../recoil/authState";
 
 const Login = () => {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsAuthenticated } = useContext(LoginContext);
   const navigate = useNavigate();
+
+  const [isLoggedInState, setIsLoggedInState] = useRecoilState(authState);
+
   const handleLogin = async () => {
     try {
+      console.log("Logging in");
       const response = await axios.post(
         "http://localhost:3000/api/auth/login",
         {
@@ -25,10 +29,15 @@ const Login = () => {
       );
       console.log("Login successful:", response.data);
 
-      // Save token to local storage
-      localStorage.setItem("token", response.data.token);
-      setIsAuthenticated(true);
-      navigate("/");
+      if (response.status === 200) {
+        setIsLoggedInState({
+          username: response.data.data.username,
+          email: response.data.data.email,
+        });
+        console.log(isLoggedInState);
+
+        navigate("/");
+      }
     } catch (error) {
       console.error("Login failed:", error);
     }
@@ -46,7 +55,12 @@ const Login = () => {
               </h3>
 
               <div>
-                <form>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleLogin();
+                  }}
+                >
                   <input
                     className="border border-gray-gray9 rounded-md text-base h-10 px-4 bg-gray-gray9 text-black w-full mt-6"
                     type="text"
@@ -59,10 +73,7 @@ const Login = () => {
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <button
-                    className="bg-black text-white text-base h-10 rounded-3xl w-full mt-6"
-                    onClick={handleLogin}
-                  >
+                  <button className="bg-black text-white text-base h-10 rounded-3xl w-full mt-6">
                     Login
                   </button>
                 </form>

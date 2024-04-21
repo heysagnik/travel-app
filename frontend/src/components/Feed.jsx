@@ -1,21 +1,35 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginContext from "../LoginContext";
 import {
   Heart as HeartIcon,
   ChatBubbleEmpty as ChatIcon,
   UserBadgeCheck as UserIcon,
 } from "iconoir-react";
 
+import { useRecoilState } from "recoil";
+import { authState } from "../recoil/authState";
+
 import RightBar from "./RightBar";
 
 // eslint-disable-next-line react/prop-types
 const Feed = ({ tweets }) => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useContext(LoginContext);
-  if (!isAuthenticated) {
-    navigate("/login");
-  }
+
+  const [isLoggedInState, setIsLoggedInState] = useRecoilState(authState);
+
+  useEffect(() => {
+    console.log(isLoggedInState);
+    console.log("here");
+    if (isLoggedInState.username) {
+      console.log(isLoggedInState);
+      console.log("Feed mounted");
+    } else {
+      console.log("meh");
+      console.log(isLoggedInState);
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <div className="lg:flex ">
       <div className="lg:w-[640px] w-full h-full pb-20  pt-14">
