@@ -12,6 +12,8 @@ import Message from "./components/Message";
 import Profile from "./components/Profile";
 import axios from "axios";
 import { Provider } from "./LoginContext";
+import { RecoilRoot, useRecoilState } from "recoil";
+import { authState } from "./recoil/authState";
 
 // eslint-disable-next-line react/prop-types
 const Redirect = ({ to }) => {
@@ -27,24 +29,24 @@ const Redirect = ({ to }) => {
 const tweets = [
   {
     id: 1,
-    userName: "John Doe",
+    userName: "A trip to Maldives",
     userPhoto: "https://randomuser.me/api/portraits/women/65.jpg",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec nunc at lacus tincidunt vehicula.",
+      "Category: Beach. Limit: 1. Description: A week in Maldives. Who's interested? ---John Doe",
   },
   {
     id: 2,
-    userName: "Jane Doe",
+    userName: "Kashmir trip",
     userPhoto: "https://randomuser.me/api/portraits/women/65.jpg",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec nunc at lacus tincidunt vehicula.",
+      "Category: Hill station. Limit: 2. Description: Who's interested? ---Patel",
   },
   {
     id: 3,
-    userName: "John Doe",
+    userName: "A trip to Goa",
     userPhoto: "https://randomuser.me/api/portraits/women/65.jpg",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec nunc at lacus tincidunt vehicula.",
+      "Category: Beach. Limit: 1. Description: I want to go to Goa. Anyone up to accompany me? ---Anita",
   },
 ];
 
@@ -75,33 +77,36 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
-  useEffect(() => {
-    const checkAuthentication = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (token) {
-          const response = await axios.post("/api/verifyToken", { token });
-          if (response.data.valid) {
-            setIsAuthenticated(true);
-          } else {
-            setIsAuthenticated(false);
-            localStorage.removeItem("token"); // Remove invalid token
-          }
-        }
-      } catch (error) {
-        console.error("Error verifying token:", error);
-      }
-    };
+  // const [isLoggedInState, setIsLoggedInState] = useRecoilState(authState);
+  // useEffect(() => {
+  //   const checkAuthentication = async () => {
+  //     try {
+  //       const response = await axios.post(
+  //         "http://localhost:3000/api/auth/verifyToken",
+  //         {},
+  //         {
+  //           withCredentials: true,
+  //         }
+  //       );
+  //       if (response.data.message === "Token is valid") {
+  //         setIsLoggedInState({
+  //           username: response.data.data.username,
+  //           email: response.data.data.email,
+  //         });
+  //       }
+  //     } catch (error) {
+  //       console.error("Error verifying token:", error);
+  //     }
+  //   };
 
-    checkAuthentication();
-  }, []);
+  //   checkAuthentication();
+  // }, []);
 
   return (
     <>
-      <Provider value={{ isAuthenticated, setIsAuthenticated }}>
+      <RecoilRoot>
         <RouterProvider router={router} />
-      </Provider>
+      </RecoilRoot>
     </>
   );
 }
