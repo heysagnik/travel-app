@@ -39,7 +39,8 @@ const postModel = new mongoose.Schema(
     limit: {
       // if limit is set, only that many users can be interested in the post
       type: Number,
-      required: false,
+      required: true,
+      default: 1,
     },
     comments: {
       // wont implement this feature as of now

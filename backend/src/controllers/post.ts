@@ -5,7 +5,7 @@ import Post from "../models/post";
 export const getPosts = async (req: Request, res: Response) => {
   try {
     const posts = await Post.find({ status: "active" })
-      .populate("author", "username status")
+      .populate("author", "username status name")
       .sort({ createdAt: -1 })
       .limit(30)
       .exec();

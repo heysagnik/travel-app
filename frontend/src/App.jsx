@@ -1,7 +1,11 @@
 import React, { useEffect, Suspense, lazy } from "react";
-import { createBrowserRouter, useNavigate, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  useNavigate,
+  RouterProvider,
+} from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import tweets from  "./examples/tweets";
+import tweets from "./examples/tweets";
 
 const Feed = lazy(() => import("./components/Feed"));
 const Login = lazy(() => import("./pages/Login"));
@@ -26,7 +30,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { path: "/", element: <Redirect to="/discover" /> },
-      { path: "/discover", element: <Feed tweets={tweets} /> },
+      { path: "/discover", element: <Feed /> },
       { path: "/message", element: <Message /> },
       { path: "/profile", element: <Profile /> },
     ],
