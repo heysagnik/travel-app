@@ -24,7 +24,7 @@ const Review = () => {
             </div>
           </Col>
           <Col span={24}>
-            {/* <h1>Members: {members}</h1> */}
+            <h1>Members: {members}</h1>
           </Col>
         </Row>
         <div
