@@ -5,7 +5,8 @@ import { useContext, useState } from "react";
 import MultiStepFormContext from "./MultiStepFormContext";
 import { Checkmark } from "react-checkmark";
 const Review = () => {
-  const { details, timing, next, prev } = useContext(MultiStepFormContext);
+  const { details, timing, members, next, prev } =
+    useContext(MultiStepFormContext);
   const [visible, setVisible] = useState(false);
   const onClick = () => {
     next();
@@ -29,6 +30,10 @@ const Review = () => {
             <NavArrowRight />
             <div className="">{timing.toDate}</div>
           </div>
+        </div>
+        <div>
+          <div className="text-xl">Members:</div>
+          <div className="text-2xl">{members}</div>
         </div>
         <div className={"flex justify-between items-center mt-4 "}>
           <Button
