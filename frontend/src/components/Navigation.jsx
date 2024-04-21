@@ -4,6 +4,7 @@ import {
   Bell as Chat,
   UserCircle as User,
   PlusCircle as Plus,
+  LogOut,
 } from "iconoir-react";
 import { useLocation } from "react-router-dom";
 
@@ -62,7 +63,19 @@ const Navigation = () => {
               </button>
             </div>
           </li>
+          <li>
+          <div className="hidden lg:block">
+          <button
+            className="flex flex-row space-x-3 py-1 lg:py-2 px-3 lg:px-6 rounded-full gap-3 bg-black text-white"
+            onClick={{}}
+          >
+            <LogOut/>
+            <span>Logout</span>
+          </button>
+          </div>
+          </li>
         </ul>
+        
         <div className="fixed bottom-14 right-8 lg:hidden  z-20">
           <button
             className="bg-black text-white p-2 rounded-full"
