@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { AvatarGenerator } from "random-avatar-generator";
 import { Link } from "react-router-dom";
 import { UserPlus } from "iconoir-react";
 import axios from "axios";
 
 const UserCard = ({ userName, name }) => {
+  const generator = new AvatarGenerator();
   return (
     <div className="flex flex-row  mb-2">
       <img
-        src="https://randomuser.me/api/portraits/women/65.jpg"
+        src={"https://randomuser.me/api/portraits/women/65.jpg"}
         className="w-8 h-8 rounded-full"
       />
       <div className="ml-4 text-xs">

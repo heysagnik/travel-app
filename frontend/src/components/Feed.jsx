@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { AvatarGenerator } from "random-avatar-generator";
 import {
   Heart as HeartIcon,
   ChatBubbleEmpty as ChatIcon,
@@ -34,6 +35,8 @@ const Feed = () => {
     }
   }, []);
 
+  const generator = new AvatarGenerator();
+
   return (
     <div className="lg:flex ">
       <div className="lg:w-[640px] w-full h-full pb-20  pt-14">
@@ -44,7 +47,7 @@ const Feed = () => {
           >
             <div className="flex items-center space-x-4">
               <img
-                src={tweet.userPhoto}
+                src={generator.generateRandomAvatar()}
                 alt="User"
                 className="w-10 h-10 rounded-full"
               />
