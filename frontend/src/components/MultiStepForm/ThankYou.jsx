@@ -10,6 +10,7 @@ export default function ThankYou({ next }) {
     <div className={"details__wrapper flex flex-col items-center gap-2"}>
       <Checkmark />
       <div>Thank You!</div>
+      <div>{(details, timing, members)}</div>
       <div>Your Post has been published</div>
       <Button type={"default"} onClick={onClick}>
         Done

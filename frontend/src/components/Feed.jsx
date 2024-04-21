@@ -19,13 +19,8 @@ const Feed = ({ tweets }) => {
   const auth = useRecoilValue(authState);
 
   useEffect(() => {
-    console.log("here");
     if (auth.username) {
-      console.log(auth);
-      console.log("Feed mounted");
     } else {
-      console.log("nahh failed");
-      console.log(auth);
       navigate("/login");
     }
   }, []);

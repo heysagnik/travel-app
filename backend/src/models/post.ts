@@ -18,6 +18,7 @@ const postModel = new mongoose.Schema(
       type: String,
       required: true,
       enum: ["beach", "mountain", "city", "countryside", "other"],
+      default: "other",
     },
     tags: {
       type: Array,

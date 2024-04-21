@@ -1,11 +1,19 @@
 import express from "express";
+import {
+  closePost,
+  getProfile,
+  getUsers,
+  interestedInAPost,
+} from "../controllers/user";
 
 export const router = express.Router();
 
-router.post("/interested/:id", async (req, res) => {});
+router.get("/", getUsers);
 
-router.post("/close/:id", async (req, res) => {});
+router.post("/interested/:id", interestedInAPost);
 
-router.get("/profile/:id", async (req, res) => {});
+router.post("/close/:id", closePost);
+
+router.get("/profile/:id", getProfile);
 
 // endpoints not tested yet

@@ -5,6 +5,7 @@ import Destination from "./Destination";
 import Timing from "./Timing";
 import Review from "./Review";
 import NumberOfMembers from "./NumberOf";
+import axios from "axios";
 
 const { Step } = Steps;
 
@@ -39,8 +40,31 @@ const MultiStepForm = () => {
   const [members, setMembers] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
 
+  const handleSubmit = async (title, content, limit) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/posts/new",
+        {
+          title,
+          content,
+          limit,
+        },
+        { withCredentials: true }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const next = () => {
     if (currentStep === 3) {
+      // console.log(details, timing, members);
+      const title = details.destination;
+      const content = `From ${timing.fromDate} to ${timing.toDate} in ${details.destination}.`;
+      const limit = members.members;
+      console.log(title, content, limit);
+      handleSubmit(title, content, limit);
       setCurrentStep(0);
       setDetails(detailsInitialState);
       setTiming(TimingInitialState);
