@@ -83,3 +83,17 @@ export const logout = async (req: Request, res: Response) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+export const verifyToken = async (req: Request, res: Response) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    const verified = jwt.verify(token, process.env.JWT_SECRET as Secret);
+    return res.status(200).json({ message: "Token verified", data: verified });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
