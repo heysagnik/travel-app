@@ -9,7 +9,7 @@ const UserCard = ({ userName, name }) => {
   return (
     <div className="flex flex-row  mb-2">
       <img
-        src={"https://randomuser.me/api/portraits/women/65.jpg"}
+        src={generator.generateRandomAvatar()}
         className="w-8 h-8 rounded-full"
       />
       <div className="ml-4 text-xs">
