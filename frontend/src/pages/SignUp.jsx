@@ -11,12 +11,12 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [contact, setContact] = useState("");
+  const [contact, setContact] = useState("+91");
   const [address, setAddress] = useState("");
   const [username, setUsername] = useState("");
   const setAuth = useSetRecoilState(authState);
   const navigate = useNavigate();
-  
+
   const handleLogin = async () => {
     try {
       const response = await axios.post(
@@ -34,7 +34,7 @@ const SignUp = () => {
           withCredentials: true,
         }
       );
-      localStorage.setItem('user', JSON.stringify(response.data.data));
+      localStorage.setItem("user", JSON.stringify(response.data.data));
       setAuth(response.data.data);
       console.log("register successful:", response.data);
 

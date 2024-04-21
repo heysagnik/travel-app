@@ -47,8 +47,9 @@ export const interestedInAPost = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const userId = req.body.user.id;
+    const intUser = await User.findById(userId);
     const post = await Post.findById(id)
-      .populate("author", "id")
+      .populate("author", "id contact")
       .populate("interestedUsers", "id contact")
       .exec();
     if (!post) {
@@ -71,19 +72,27 @@ export const interestedInAPost = async (req: Request, res: Response) => {
     }
     await post.save();
 
-    for (const user of post.interestedUsers) {
-      // send notification to all interested users
-      // @ts-ignore
-      if (user.contact) {
-        sendSMS(
-          // @ts-ignore
-          user.contact,
-          `Someone is interested in your post: ${post.title}`
-        );
-      }
-    }
+    // for (const user of post.interestedUsers) {
+    //   // send notification to all interested users
+    //   // @ts-ignore
+    //   if (user.contact) {
+    //     sendSMS(
+    //       // @ts-ignore
+    //       user.contact,
+    //       `Someone is interested in your post: ${post.title}`
+    //     );
+    //   }
+    // }
 
     // send notification to the author of the post
+    // @ts-ignore
+    const contactNumber = post.author.contact;
+    if (contactNumber) {
+      sendSMS(
+        contactNumber,
+        `${intUser?.name} is interested in your post: ${post.title}. Contact: ${intUser?.contact}`
+      );
+    }
 
     res.status(200).json({ message: "Interested in the post" });
   } catch (err) {

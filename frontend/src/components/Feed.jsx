@@ -59,12 +59,21 @@ const Feed = () => {
             <p className="mt-2 text-gray-700">{tweet.content}</p>
             <div className="mt-2 flex space-x-4">
               <button
-                onClick={() => {
+                onClick={async () => {
                   // setHeartsFilled((prevHeartsFilled) => {
                   //   const newHeartsFilled = [...prevHeartsFilled];
                   //   newHeartsFilled[index] = !newHeartsFilled[index];
                   //   return newHeartsFilled;
                   // }
+                  const userId = auth.id;
+                  const tweetId = tweet._id;
+                  const resp = await axios.post(
+                    "http://localhost:3000/api/users/interested/${tweetId}",
+                    {},
+                    { withCredentials: true }
+                  );
+                  console.log(resp.data);
+
                   document.getElementById("details_sent_modal").showModal();
                 }}
               >
