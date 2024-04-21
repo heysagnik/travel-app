@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navigation from "./Navigation";
 import Modal from "./Modal";
+import DetailsModal from "./DetailsSentModal";
 
 const RootLayout = () => {
   return (
@@ -8,6 +9,7 @@ const RootLayout = () => {
       <Navigation />
       <Outlet />
       <Modal />
+      <DetailsModal />
     </div>
   );
 };
