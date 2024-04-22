@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-
 import Post from "../models/post";
 
 export const getPosts = async (req: Request, res: Response) => {

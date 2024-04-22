@@ -1,7 +1,7 @@
-import e from "express";
 import mongoose from "mongoose";
+import { IUser } from "../ts/interfaces";
 
-const userModel = new mongoose.Schema({
+const userModel = new mongoose.Schema<IUser>({
   name: {
     type: String,
     required: true,
