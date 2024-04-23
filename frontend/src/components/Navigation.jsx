@@ -1,25 +1,19 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
-  HomeSimpleDoor as Home,
-  Bell as Chat,
-  UserCircle as User,
-  PlusCircle as Plus,
-  LogOut,
+  HomeSimpleDoor as HomeIcon,
+  Bell as ChatIcon,
+  UserCircle as UserIcon,
+  PlusCircle as PlusIcon,
+  LogOut as LogoutIcon,
 } from "iconoir-react";
-import { useLocation } from "react-router-dom";
-
-import { useNavigate } from "react-router-dom";
-
-import axios from "axios";
 
 const Navigation = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const getNavLinkClass = (path) => {
     return location.pathname === path ? "font-bold" : "";
   };
-
-  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col">
@@ -32,7 +26,7 @@ const Navigation = () => {
                 "/discover"
               )}`}
             >
-              <Home />
+              <HomeIcon />
               <span className="hidden lg:block">Discover</span>
             </NavLink>
           </li>
@@ -43,7 +37,7 @@ const Navigation = () => {
                 "/message"
               )}`}
             >
-              <Chat />
+              <ChatIcon />
               <span className="hidden lg:block">Notifications</span>
             </NavLink>
           </li>
@@ -54,11 +48,11 @@ const Navigation = () => {
                 "/profile"
               )}`}
             >
-              <User />
+              <UserIcon />
               <span className="hidden lg:block">Profile</span>
             </NavLink>
           </li>
-          <li>
+          
             <div className="hidden lg:block">
               <button
                 className="flex flex-row space-x-3 py-1 lg:py-2 px-3 lg:px-6 rounded-full gap-3 bg-black text-white"
@@ -66,12 +60,12 @@ const Navigation = () => {
                   document.getElementById("my_modal_3").showModal()
                 }
               >
-                <Plus />
+                <PlusIcon />
                 Journey
               </button>
             </div>
-          </li>
-          <li>
+          
+          
             <div className="hidden lg:block">
               <button
                 className="flex flex-row space-x-3 py-1 lg:py-2 px-3 lg:px-6 rounded-full gap-3 bg-black text-white"
@@ -88,11 +82,11 @@ const Navigation = () => {
                   navigate("/login");
                 }}
               >
-                <LogOut />
+                <LogoutIcon />
                 <span>Logout</span>
               </button>
             </div>
-          </li>
+        
         </ul>
 
         <div className="fixed bottom-14 right-8 lg:hidden  z-20">
@@ -100,7 +94,7 @@ const Navigation = () => {
             className="bg-black text-white p-2 rounded-full"
             onClick={() => document.getElementById("my_modal_3").showModal()}
           >
-            <Plus />
+            <PlusIcon />
           </button>
         </div>
       </nav>

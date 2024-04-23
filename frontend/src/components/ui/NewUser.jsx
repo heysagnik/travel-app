@@ -14,7 +14,7 @@ const UserCard = ({ userName, name }) => {
       />
       <div className="ml-4 text-xs">
         <p className="font-bold ">{name}</p>
-        <p className="text-gray-500">{userName}</p>
+        <p className="text-gray-500">@{userName}</p>
       </div>
       <Link to="/profile" className="text-orange-500 ml-6 text-sm">
         <UserPlus />

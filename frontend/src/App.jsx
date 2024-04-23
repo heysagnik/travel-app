@@ -1,18 +1,14 @@
-import React, { useEffect, Suspense, lazy } from "react";
-import {
-  createBrowserRouter,
-  useNavigate,
-  RouterProvider,
-} from "react-router-dom";
+import React from "react";
+import { createBrowserRouter, useNavigate, RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import tweets from "./examples/tweets";
 
-const Feed = lazy(() => import("./components/Feed"));
-const Login = lazy(() => import("./pages/Login"));
-const Signup = lazy(() => import("./pages/SignUp"));
-const RootLayout = lazy(() => import("./components/RootLayout"));
-const Message = lazy(() => import("./components/Message"));
-const Profile = lazy(() => import("./components/Profile"));
+import Feed from "./components/Feed";
+import Login from "./pages/Login";
+import Signup from "./pages/SignUp";
+import RootLayout from "./components/RootLayout";
+import Message from "./components/Message";
+import Profile from "./components/Profile";
 
 const Redirect = ({ to }) => {
   const navigate = useNavigate();
@@ -42,9 +38,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <RecoilRoot>
-      <Suspense fallback={<div>Loading...</div>}>
-        <RouterProvider router={router} />
-      </Suspense>
+      <RouterProvider router={router} />
     </RecoilRoot>
   );
 }
