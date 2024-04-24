@@ -3,31 +3,26 @@ import { Outlet } from 'react-router-dom';
 import Navigation from "./Navigation";
 import Modal from "./Modal";
 import DetailsModal from "./DetailsSentModal";
-import { Circle } from 'iconoir-react';
+import Navbar from './Navbar';
+import RightBar from './RightBar';
 
 
 
 const RootLayout = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 1000); // Adjust delay as needed
-    return () => clearTimeout(timer);
-  }, []);
+  
 
   return (
+    <div>
+      {/* <Navbar /> */}
     <div className="lg:w-[1200px] w-full min-h-screen mx-auto lg:flex">
+      
       <Navigation />
-      {isLoading ? (
-        <div className="flex justify-center items-center">
-        <Circle className="animate-spin h-32 w-32 text-purple-500" />
-      </div>
-      ) : (
         <Outlet />
-      )}
+        <RightBar />
+      
       <Modal />
       <DetailsModal />
+    </div>
     </div>
   );
 };

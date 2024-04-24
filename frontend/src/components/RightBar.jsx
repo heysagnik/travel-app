@@ -7,7 +7,7 @@ import { authState } from "../recoil/authState";
 const RightBar = () => {
   const auth = useRecoilValue(authState);
   return (
-    <div className="max-w-348 h-full min-h-screen top-14 bg-white border-l border-grey px-6 py-6 hidden md:block">
+    <div className="max-w-348 h-full min-h-screen bg-white border-l border-r border-grey px-6 py-6 hidden md:block">
       {auth ? <NewUsersCard /> : <LoginCard />}
     </div>
   );

@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState, useEffect, Suspense } from 'react';
 import { createBrowserRouter, useNavigate, RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import tweets from "./examples/tweets";
-
-import Feed from "./components/Feed";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import RootLayout from "./components/RootLayout";
 import Message from "./components/Message";
 import Profile from "./components/Profile";
+import Feed from "./components/Feed";
+
+
 
 const Redirect = ({ to }) => {
   const navigate = useNavigate();
@@ -38,7 +38,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <RecoilRoot>
+      
       <RouterProvider router={router} />
+  
     </RecoilRoot>
   );
 }

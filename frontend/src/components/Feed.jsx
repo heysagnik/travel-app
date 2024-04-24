@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { AvatarGenerator } from "random-avatar-generator";
 import {
@@ -11,7 +10,6 @@ import {
 import { useRecoilValue } from "recoil";
 import { authState } from "../recoil/authState";
 import axios from "axios";
-
 import RightBar from "./RightBar";
 
 const Feed = () => {
@@ -38,8 +36,8 @@ const Feed = () => {
   const generator = new AvatarGenerator();
 
   return (
-    <div className="lg:flex ">
-      <div className="lg:w-[640px] w-full h-full pb-20  pt-14">
+    
+      <div className="lg:w-[640px] w-full h-full pb-20  pt-1 overflow-auto">
         {tweets.map((tweet, index) => (
           <article
             key={tweet._id}
@@ -97,8 +95,7 @@ const Feed = () => {
           </article>
         ))}
       </div>
-      <RightBar />
-    </div>
+    
   );
 };
 

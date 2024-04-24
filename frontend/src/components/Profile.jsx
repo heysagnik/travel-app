@@ -35,7 +35,7 @@ function Profile() {
   }, []);
 
   return (
-    <div className="m-8">
+    <div className="lg:w-[640px] w-full h-full pb-20  pt-1 overflow-auto">
       <h3 className=" text-3xl ">Profile</h3>
       <p className="pt-10">Username: @{auth.username}</p>
       {profile === null ? (

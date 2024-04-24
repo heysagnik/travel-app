@@ -23,6 +23,7 @@
     "react-checkmark": "^2.0.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
+    "react-spinners-kit": "^1.9.1",
     "react-toastify": "^10.0.5",
     "recoil": "^0.7.7"
   },

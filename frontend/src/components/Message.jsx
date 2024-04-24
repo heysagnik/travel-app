@@ -9,7 +9,7 @@ function Message() {
     navigate("/login");
   }
   return (
-    <div>
+    <div className="lg:w-[640px] w-full h-full pb-20  pt-1 overflow-auto">
       <h1>Message</h1>
     </div>
   );
